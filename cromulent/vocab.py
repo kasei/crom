@@ -829,6 +829,8 @@ def add_linked_art_boundary_check():
 			for ca in value.classified_as:
 				if instances['brief text'] in getattr(ca, 'classified_as', []):
 					return True
+		elif isinstance(value, DigitalObject) and hasattr(value, 'access_point') and not getattr(value, 'id', ''):
+			return True
 		# Non Statement Linguistic objects might still be internal or external
 		# so apply logic from relating properties, not return False
 		elif isinstance(value, ProvenanceEntry):
